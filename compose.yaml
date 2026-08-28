@@ -1,0 +1,7 @@
+﻿services:
+  pulsetech.api:
+    image: pulsetech.api
+    build:
+      context: .
+      dockerfile: PulseTech.Api/Dockerfile
+

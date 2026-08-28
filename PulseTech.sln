@@ -1,0 +1,21 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PulseTech.Api", "PulseTech.Api\PulseTech.Api.csproj", "{09BB07D0-543E-418F-BB2B-26DAA0D716A6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8E2EA360-947F-4241-8A09-2CF90D335C42}"
+	ProjectSection(SolutionItems) = preProject
+		compose.yaml = compose.yaml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{09BB07D0-543E-418F-BB2B-26DAA0D716A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09BB07D0-543E-418F-BB2B-26DAA0D716A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09BB07D0-543E-418F-BB2B-26DAA0D716A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09BB07D0-543E-418F-BB2B-26DAA0D716A6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
