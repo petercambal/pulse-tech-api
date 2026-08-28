@@ -9,11 +9,12 @@ public sealed record DeviceDto(
     DateTime CreatedAt,
     Guid? AppId);
 
-/// <summary>Request body for <c>POST /api/devices</c>.</summary>
+/// <summary>
+/// Request body for <c>POST /api/devices</c>. The owner is always the authenticated
+/// caller, so it is not part of the payload.
+/// </summary>
 public sealed class CreateDeviceRequest
 {
-    public Guid OwnerUserId { get; set; }
-
     public string Name { get; set; } = string.Empty;
 
     public Guid? AppId { get; set; }

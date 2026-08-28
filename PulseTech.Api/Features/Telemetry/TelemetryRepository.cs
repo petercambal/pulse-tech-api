@@ -5,13 +5,16 @@ namespace PulseTech.Api.Features.Telemetry;
 
 public sealed class TelemetryRepository(IDbConnectionFactory connectionFactory)
 {
-    public async Task<bool> DeviceExistsAsync(Guid deviceId, CancellationToken cancellationToken)
+    public async Task<bool> DeviceBelongsToUserAsync(
+        Guid deviceId,
+        Guid ownerUserId,
+        CancellationToken cancellationToken)
     {
         using var connection = await connectionFactory.OpenConnectionAsync(cancellationToken);
 
         return await connection.ExecuteScalarAsync<bool>(new CommandDefinition(
-            "select exists(select 1 from core.devices where id = @DeviceId::char(36))",
-            new { DeviceId = deviceId.ToString() },
+            "select exists(select 1 from core.devices where id = @DeviceId::char(36) and owner_user_id = @OwnerUserId)",
+            new { DeviceId = deviceId.ToString(), OwnerUserId = ownerUserId },
             cancellationToken: cancellationToken));
     }
 

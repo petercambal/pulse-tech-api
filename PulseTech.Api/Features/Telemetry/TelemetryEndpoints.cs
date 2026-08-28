@@ -1,3 +1,6 @@
+using System.Security.Claims;
+using PulseTech.Api.Common.Auth;
+
 namespace PulseTech.Api.Features.Telemetry;
 
 public static class TelemetryEndpoints
@@ -15,7 +18,8 @@ public static class TelemetryEndpoints
     {
         app.MapPost("/api/devices/{deviceId:guid}/telemetry/query", GetDeviceTelemetry)
             .WithName("GetDeviceTelemetry")
-            .WithTags("Telemetry");
+            .WithTags("Telemetry")
+            .RequireAuthorization();
 
         return app;
     }
@@ -23,6 +27,7 @@ public static class TelemetryEndpoints
     private static async Task<IResult> GetDeviceTelemetry(
         Guid deviceId,
         GetDeviceTelemetryRequest? request,
+        ClaimsPrincipal user,
         TelemetryRepository repository,
         CancellationToken cancellationToken)
     {
@@ -41,7 +46,7 @@ public static class TelemetryEndpoints
 
         var limit = Math.Clamp(request.Limit ?? DefaultLimit, 1, MaxLimit);
 
-        if (!await repository.DeviceExistsAsync(deviceId, cancellationToken))
+        if (!await repository.DeviceBelongsToUserAsync(deviceId, user.GetUserId(), cancellationToken))
         {
             return TypedResults.NotFound(new { message = $"Device '{deviceId}' was not found." });
         }
