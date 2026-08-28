@@ -1,4 +1,62 @@
-GET {{Api_HostAddress}}/weatherforecast/
+### List devices (optional filters: ownerUserId, appId, isActive, limit, offset)
+GET {{Api_HostAddress}}/api/devices?limit=50&isActive=true
 Accept: application/json
+
+###
+
+### Get a single device
+GET {{Api_HostAddress}}/api/devices/11111111-1111-4111-8111-000000000001
+Accept: application/json
+
+###
+
+### Create a device
+POST {{Api_HostAddress}}/api/devices
+Content-Type: application/json
+
+{
+  "ownerUserId": "00000000-0000-0000-0000-000000000000",
+  "name": "Living room pot",
+  "appId": null,
+  "isActive": true
+}
+
+###
+
+### Update a device (full replace)
+PUT {{Api_HostAddress}}/api/devices/11111111-1111-4111-8111-000000000001
+Content-Type: application/json
+
+{
+  "name": "Renamed pot",
+  "isActive": false,
+  "appId": null
+}
+
+###
+
+### Delete a device
+DELETE {{Api_HostAddress}}/api/devices/11111111-1111-4111-8111-000000000001
+
+###
+
+### List telemetry for a device over a period
+POST {{Api_HostAddress}}/api/devices/11111111-1111-4111-8111-000000000001/telemetry/query
+Content-Type: application/json
+
+{
+  "from": "2026-01-01T00:00:00Z",
+  "to": "2026-01-02T00:00:00Z"
+}
+
+###
+
+### Last 24 hours (from/to omitted), capped to 500 rows
+POST {{Api_HostAddress}}/api/devices/11111111-1111-4111-8111-000000000001/telemetry/query
+Content-Type: application/json
+
+{
+  "limit": 500
+}
 
 ###
