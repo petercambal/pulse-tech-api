@@ -1,8 +1,8 @@
 namespace PulseTech.Api.Domain.Core;
 
 /// <summary>
-/// Tabuľka <c>core.devices</c>. Stĺpec <c>id</c> je <c>char(36)</c> (GUID ako text);
-/// rovnaký typ má aj <c>device_id</c> v schéme <c>smart_pot</c>.
+/// Maps the <c>core.devices</c> table. The <c>id</c> column is <c>char(36)</c> (GUID as text);
+/// the <c>device_id</c> columns in the <c>smart_pot</c> schema use the same type.
 /// </summary>
 public sealed class Device
 {

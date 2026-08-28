@@ -1,7 +1,7 @@
 namespace PulseTech.Api.Domain.SmartPot;
 
 /// <summary>
-/// Tabuľka <c>smart_pot.telemetry</c> (time-series, hypertable podľa stĺpca <c>time</c>).
+/// Maps the <c>smart_pot.telemetry</c> table (time-series, hypertable on the <c>time</c> column).
 /// </summary>
 public sealed class Telemetry
 {

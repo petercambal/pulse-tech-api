@@ -1,8 +1,8 @@
 -- Migration: fix-device-id-char36
 -- Created: 2026-08-28T16:47:38+0200
 --
--- Zjednocuje typ device_id v scheme smart_pot s core.devices.id (char(36)).
--- Povodne boli device_metadata.device_id a telemetry.device_id typu varchar(50).
+-- Aligns the device_id type in the smart_pot schema with core.devices.id (char(36)).
+-- Previously device_metadata.device_id and telemetry.device_id were varchar(50).
 
 begin;
 

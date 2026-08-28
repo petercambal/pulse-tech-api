@@ -1,24 +1,24 @@
 #!/usr/bin/env bash
 #
-# Vytvori novy prazdny migracny SQL subor v PulseTech.Api/Migrations
-# vo formate {timestamp}:{nazov}.sql
+# Creates a new empty migration SQL file in PulseTech.Api/Migrations
+# using the {timestamp}:{name}.sql format.
 #
-# Pouzitie:
+# Usage:
 #   ./scripts/new-migration.sh add-users-table
-#   ./scripts/new-migration.sh "add users table"   # medzery sa prevedu na pomlcky
+#   ./scripts/new-migration.sh "add users table"   # spaces are converted to dashes
 
 set -euo pipefail
 
-# Oddelovac medzi timestampom a nazvom (napr. ":" alebo "_")
+# Separator between the timestamp and the name (e.g. ":" or "_")
 SEP="${MIGRATION_SEP:-:}"
 
 if [ "$#" -lt 1 ]; then
-  echo "Chyba: zadaj nazov migracie." >&2
-  echo "Priklad: $0 add-users-table" >&2
+  echo "Error: provide a migration name." >&2
+  echo "Example: $0 add-users-table" >&2
   exit 1
 fi
 
-# Spoj vsetky argumenty a normalizuj na kebab-case
+# Join all arguments and normalize to kebab-case
 raw="$*"
 name="$(printf '%s' "$raw" \
   | tr '[:upper:]' '[:lower:]' \
@@ -26,11 +26,11 @@ name="$(printf '%s' "$raw" \
   | sed -E 's/[^a-z0-9-]//g; s/-+/-/g; s/^-+//; s/-+$//')"
 
 if [ -z "$name" ]; then
-  echo "Chyba: nazov migracie je po normalizacii prazdny." >&2
+  echo "Error: migration name is empty after normalization." >&2
   exit 1
 fi
 
-# Adresar Migrations relativne k umiestneniu skriptu
+# Migrations directory relative to the script location
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 migrations_dir="$script_dir/../PulseTech.Api/Migrations"
 mkdir -p "$migrations_dir"
@@ -39,7 +39,7 @@ timestamp="$(date +%Y%m%d%H%M%S)"
 file="$migrations_dir/${timestamp}${SEP}${name}.sql"
 
 if [ -e "$file" ]; then
-  echo "Chyba: subor uz existuje: $file" >&2
+  echo "Error: file already exists: $file" >&2
   exit 1
 fi
 
@@ -49,6 +49,6 @@ cat > "$file" <<EOF
 
 EOF
 
-# Vypis cestu relativnu k repozitaru ak sa da
+# Print the path relative to the repository when possible
 rel="$(cd "$migrations_dir" && pwd)/${timestamp}${SEP}${name}.sql"
-echo "Vytvorene: $rel"
+echo "Created: $rel"

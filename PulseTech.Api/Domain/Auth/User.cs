@@ -1,7 +1,7 @@
 namespace PulseTech.Api.Domain.Auth;
 
 /// <summary>
-/// Tabuľka <c>auth.users</c>.
+/// Maps the <c>auth.users</c> table.
 /// </summary>
 public sealed class User
 {

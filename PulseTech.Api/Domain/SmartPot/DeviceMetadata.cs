@@ -1,7 +1,7 @@
 namespace PulseTech.Api.Domain.SmartPot;
 
 /// <summary>
-/// Tabuľka <c>smart_pot.device_metadata</c>.
+/// Maps the <c>smart_pot.device_metadata</c> table.
 /// </summary>
 public sealed class DeviceMetadata
 {

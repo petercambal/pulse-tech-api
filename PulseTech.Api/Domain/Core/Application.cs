@@ -1,7 +1,7 @@
 namespace PulseTech.Api.Domain.Core;
 
 /// <summary>
-/// Tabuľka <c>core.applications</c>.
+/// Maps the <c>core.applications</c> table.
 /// </summary>
 public sealed class Application
 {
